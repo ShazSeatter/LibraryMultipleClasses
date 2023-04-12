@@ -59,11 +59,11 @@ public class LibraryTest {
 
         HashMap<String, Integer> frequencies = library.genreFrequencies();
 
-        int numberOfClassics = frequencies.get("Fantasy");
-        assertEquals(2, numberOfClassics);
+        int numberOfFantasy = frequencies.get("Fantasy");
+        assertEquals(2, numberOfFantasy);
 
-        int numberOfMysteries = frequencies.get("Romance");
-        assertEquals(1, numberOfMysteries);
+        int numberOfRomance = frequencies.get("Romance");
+        assertEquals(1, numberOfRomance);
     }
 
 }
