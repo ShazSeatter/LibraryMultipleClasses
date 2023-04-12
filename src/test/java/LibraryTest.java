@@ -1,6 +1,8 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.HashMap;
+
 import static junit.framework.TestCase.assertEquals;
 
 public class LibraryTest {
@@ -37,33 +39,31 @@ public class LibraryTest {
     }
 
     @Test
-    public void libraryHasBookByTitle() {
+    public void libraryHasBookByTitle__true() {
         library.addBook(book);
         library.addBook(book2);
-        assertEquals(true, library.isBookInLibrary("Lord of the Rings"));
+        assertEquals(true, library.isBookInLibrary(book.getTitle()));
     }
 
     @Test
-    public void libraryDoesNotHaveBookByTitle() {
-        library.addBook(book);
-        assertEquals(false, library.isBookInLibrary("Game of Thrones"));
+    public void libraryHasBookByTitle__false() {
+        assertEquals(false, library.isBookInLibrary(book.getTitle()));
     }
 
+//    Extension
     @Test
-    public void getCountOfBooksByFantasyGenre() {
+    public void checkGenreFrequencies() {
         library.addBook(book);
         library.addBook(book2);
-        assertEquals(2, library.getCountGenre("Fantasy"));
-    }
-
-    @Test
-    public void getCountOfBooksByRomanceGenre() {
         library.addBook(book3);
-        assertEquals(1, library.getCountGenre("Romance"));
-    }
-    @Test
-    public void getCountOfBooksByHorrorGenre() {
-        assertEquals(0, library.getCountGenre("Horror"));
+
+        HashMap<String, Integer> frequencies = library.genreFrequencies();
+
+        int numberOfClassics = frequencies.get("Fantasy");
+        assertEquals(2, numberOfClassics);
+
+        int numberOfMysteries = frequencies.get("Romance");
+        assertEquals(1, numberOfMysteries);
     }
 
 }
